@@ -16,11 +16,11 @@ import com.example.foodup.Helper.ManagmentCart
 import com.example.foodup.R
 
 class CartAdapter(
-    private val list: ArrayList<Foods>,
+    private var list: ArrayList<Foods>,
     context: Context,
-    private val changeNumberItemsListener: () -> Unit
-) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
+    private val changeNumberItemsListener: ChangeNumberItemsListener
+) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     private val managementCart: ManagmentCart = ManagmentCart(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,16 +30,14 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = list[position].Title
-        holder.feeEachItem.text = "S" + list[position].Price.toString()
-
-        val numberInCart = list[position].numberInCart
-        val totalPrice = numberInCart * list[position].Price
-        holder.totalEachItem.text = totalPrice.toString()
-        holder.num.text = numberInCart.toString()
+        val foodItem = list[position]
+        holder.title.text = foodItem.Title
+        holder.feeEachItem.text = "₹${foodItem.Price}"
+        holder.totalEachItem.text = "₹${foodItem.numberInCart * foodItem.Price}"
+        holder.num.text = foodItem.numberInCart.toString()
 
         Glide.with(holder.itemView.context)
-            .load(list[position].ImagePath)
+            .load(foodItem.ImagePath)
             .transform(CenterCrop(), RoundedCorners(30))
             .into(holder.pic)
 
@@ -47,7 +45,7 @@ class CartAdapter(
             managementCart.plusNumberItem(list, position, object : ChangeNumberItemsListener {
                 override fun change() {
                     notifyDataSetChanged()
-                    changeNumberItemsListener() // Call the lambda directly
+                    changeNumberItemsListener.change()
                 }
             })
         }
@@ -56,7 +54,7 @@ class CartAdapter(
             managementCart.minusNumberItem(list, position, object : ChangeNumberItemsListener {
                 override fun change() {
                     notifyDataSetChanged()
-                    changeNumberItemsListener() // Call the lambda directly
+                    changeNumberItemsListener.change()
                 }
             })
         }
@@ -73,6 +71,6 @@ class CartAdapter(
         val plusItem: TextView = itemView.findViewById(R.id.plusCartBtn)
         val minusItem: TextView = itemView.findViewById(R.id.minusCartBtn)
         val totalEachItem: TextView = itemView.findViewById(R.id.totalEachItem)
-        val num: TextView = itemView.findViewById(R.id.numTxt)
+        val num: TextView = itemView.findViewById(R.id.numberItemTxt)
     }
 }
