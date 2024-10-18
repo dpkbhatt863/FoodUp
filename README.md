@@ -1,6 +1,6 @@
 # FoodUp - Food Delivery App
 
-FoodUp is a mobile application designed to provide a seamless food ordering and delivery experience. **Please note that this app is currently a work in progress and not fully functional.**New features are actively developing and existing ones are improving.
+FoodUp is a mobile application designed to provide a seamless food ordering and delivery experience. **Please note that this app is currently a work in progress and not fully functional.** New features are actively developing and existing ones are improving.
 
 ## Features
 
