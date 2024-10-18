@@ -1,6 +1,6 @@
 # FoodUp - Food Delivery App
 
-FoodUp is a mobile application designed to provide a seamless food ordering and delivery experience. **Please note that this app is currently a work in progress and not fully functional.** We are actively developing new features and improving existing ones.
+FoodUp is a mobile application designed to provide a seamless food ordering and delivery experience. **Please note that this app is currently a work in progress and not fully functional.**New features are actively developing and existing ones are improving.
 
 ## Features
 
@@ -16,6 +16,14 @@ FoodUp is a mobile application designed to provide a seamless food ordering and 
 - **Firebase**: Used for authentication and real-time database.
 - **Glide**: For image loading and caching.
 - **RecyclerView**: For displaying lists of foods and categories.
+
+## Screenshots
+
+![screenshot14](https://github.com/user-attachments/assets/ba69424d-928c-4eb2-af86-d0637ecfa6b2)
+![screenshot10](https://github.com/user-attachments/assets/3a9fde6f-5ca9-4157-8de0-5b59e8782bf4)
+![screenshot11](https://github.com/user-attachments/assets/3bd02c42-c315-4fa8-990d-3519d9013ec8)
+![screenshot12](https://github.com/user-attachments/assets/a0b613f6-3f3a-4e1c-af35-94faa8c7f59f)
+![screenshot13](https://github.com/user-attachments/assets/50e86338-30b2-49b4-a170-2e332c69a0f6)
 
 ## Installation
 
