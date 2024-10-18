@@ -36,7 +36,9 @@ class LoginActivity : BaseActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this) { task->
                     if (task.isSuccessful) {
-                        startActivity(Intent(this, MainActivity::class.java))
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
                     }
@@ -45,6 +47,11 @@ class LoginActivity : BaseActivity() {
             else {
                 Toast.makeText(this, "Please fill username and password", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.signUp.setOnClickListener {
+            // Navigate to SignUpActivity (replace with your actual sign-up activity)
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 }

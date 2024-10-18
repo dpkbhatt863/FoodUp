@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,16 +34,34 @@ import com.google.firebase.database.ValueEventListener
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mAuth = FirebaseAuth.getInstance()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (mAuth.currentUser == null) {
+                    // If user is logged out, go to the intro page
+                    val intent = Intent(this@MainActivity, IntroActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                } else {
+                    // Handle normal back press
+                    finish()
+                }
+            }
+        })
 
         initLocation()
         initTime()
@@ -52,13 +72,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setVariable() {
-        binding.logoutBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this@MainActivity,LoginActivity::class.java))
-            }
+        binding.logoutBtn.setOnClickListener {
+            mAuth.signOut()
+                Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
 
-        })
+            // Clear the back stack and navigate to the login/intro activity
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
 
         binding.searchBtn.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
@@ -81,6 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
 
     private fun initCategory() {
         val database = FirebaseDatabase.getInstance()

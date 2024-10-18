@@ -44,12 +44,17 @@ class SignupActivity : BaseActivity() {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.i(TAG,"onComplete")
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this,LoginActivity::class.java))
                 } else {
                     Log.i(TAG,"Failure"+ task.exception)
                     Toast.makeText(this,"Authentication failed", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        binding.login.setOnClickListener {
+            // Navigate to SignUpActivity (replace with your actual sign-up activity)
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }
