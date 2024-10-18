@@ -19,11 +19,11 @@ FoodUp is a mobile application designed to provide a seamless food ordering and 
 
 ## Screenshots
 
-![screenshot14](https://github.com/user-attachments/assets/ba69424d-928c-4eb2-af86-d0637ecfa6b2)
-![screenshot10](https://github.com/user-attachments/assets/3a9fde6f-5ca9-4157-8de0-5b59e8782bf4)
-![screenshot11](https://github.com/user-attachments/assets/3bd02c42-c315-4fa8-990d-3519d9013ec8)
-![screenshot12](https://github.com/user-attachments/assets/a0b613f6-3f3a-4e1c-af35-94faa8c7f59f)
-![screenshot13](https://github.com/user-attachments/assets/50e86338-30b2-49b4-a170-2e332c69a0f6)
+<img src="https://github.com/user-attachments/assets/ba69424d-928c-4eb2-af86-d0637ecfa6b2" alt="Screenshot14" width="200px">
+<img src="https://github.com/user-attachments/assets/3a9fde6f-5ca9-4157-8de0-5b59e8782bf4" alt="Screenshot10" width="200px">
+<img src="https://github.com/user-attachments/assets/3bd02c42-c315-4fa8-990d-3519d9013ec8" alt="Screenshot11" width="200px">
+<img src="https://github.com/user-attachments/assets/a0b613f6-3f3a-4e1c-af35-94faa8c7f59f" alt="Screenshot12" width="200px">
+<img src="https://github.com/user-attachments/assets/50e86338-30b2-49b4-a170-2e332c69a0f6" alt="Screenshot13" width="200px">
 
 ## Installation
 
